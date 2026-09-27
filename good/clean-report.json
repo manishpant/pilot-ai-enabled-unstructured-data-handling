@@ -1,0 +1,11 @@
+{
+  "id": "clean-report",
+  "source": "clean-report.pdf",
+  "file_type": "pdf",
+  "text": "Infrastructure change request\nService: payments-api\nEnvironment: non-production\nChange: add a private subnet and a security group\nthat allows inbound traffic only from the app tier.\nTerraform plan is required. Apply needs human approval.\nOwner: platform team. Ticket: PILOT-1042.",
+  "quality": "good",
+  "quality_score": 93,
+  "quality_rules": "good",
+  "quality_llm": "good",
+  "quality_llm_reason": "Clear, readable document with coherent sentences describing an infrastructure change request."
+}
