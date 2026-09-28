@@ -1,3 +1,0 @@
-This file is plain text, not a PDF.
-Stage 1 rules should miss it because the extension is .txt.
-It is the sample for the AI fallback path. If AI fails, the type stays unknown.
