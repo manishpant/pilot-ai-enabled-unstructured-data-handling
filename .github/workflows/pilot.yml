@@ -61,6 +61,8 @@ jobs:
     name: Stage 3 quality gate
     needs: stage2
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -94,6 +96,18 @@ jobs:
             good/
             bad/
           if-no-files-found: error
+
+      - name: Commit JSON files to the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add json good bad
+          if git diff --cached --quiet; then
+            echo "No JSON changes to commit"
+            exit 0
+          fi
+          git commit -m "Add JSON results from the pilot pipeline"
+          git push
 
   summary:
     name: Summary
