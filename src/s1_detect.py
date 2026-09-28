@@ -7,16 +7,15 @@ from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
 INBOX = ROOT / "inbox"
-ALLOWED_TYPES = {"pdf", "txt", "docx", "html", "image", "unknown"}
+ALLOWED_TYPES = {"pdf", "xml", "csv", "txt", "docx", "html", "image", "unknown"}
+RULED_TYPES = {".pdf": "pdf", ".xml": "xml", ".csv": "csv"}
 MODEL = "claude-haiku-4-5"
 
 load_dotenv(ROOT / ".env")
 
 
 def detect_by_rules(path: Path) -> str | None:
-    if path.suffix.lower() == ".pdf":
-        return "pdf"
-    return None
+    return RULED_TYPES.get(path.suffix.lower())
 
 
 def classify_with_ai(path: Path) -> str:

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Statement>
+  <Account>GB29NWBK60161331926819</Account>
+  <Currency>GBP</Currency>
+  <Transaction>
+    <Date>2026-03-12</Date>
+    <Amount>250.00</Amount>
+    <Currency>GBP</Currency>
+    <Reference>INV-1042</Reference>
+    <Description>Supplier payment</Description>
+  </Transaction>
+  <Transaction>
+    <Date>2026-03-13</Date>
+    <Amount>75.50</Amount>
+    <Currency>GBP</Currency>
+    <Reference>INV-1043</Reference>
+    <Description>Card settlement</Description>
+  </Transaction>
+  <Transaction>
+    <Date>2026-03-16</Date>
+    <Amount>420.00</Amount>
+    <Currency>GBP</Currency>
+    <Reference>INV-1046</Reference>
+    <Description>Customer receipt</Description>
+  </Transaction>
+</Statement>
