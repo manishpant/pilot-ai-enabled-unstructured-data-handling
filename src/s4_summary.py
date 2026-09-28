@@ -25,6 +25,17 @@ def load_records(folder: Path) -> list[dict]:
 
 
 def fallback(record: dict) -> tuple[str, str]:
+    if record.get("file_type") in {"xml", "csv"} or record.get("transactions"):
+        transactions = record.get("transactions") or []
+        if not transactions:
+            return (
+                "No transactions could be read from the file.",
+                "Replace it with a valid statement that has date, amount, currency, and reference.",
+            )
+        return (
+            "One or more transactions are missing a date, amount, or currency.",
+            "Correct those fields and run the pipeline again.",
+        )
     text = (record.get("text") or "").strip()
     file_type = record.get("file_type") or "unknown"
     if not text and file_type != "pdf":
@@ -66,6 +77,7 @@ def ask_claude(records: list[dict]) -> dict[str, dict]:
                 "quality_llm": record.get("quality_llm"),
                 "quality_llm_reason": record.get("quality_llm_reason"),
                 "text_preview": (record.get("text") or "")[:400],
+                "transactions": (record.get("transactions") or [])[:5],
             }
         )
     message = Anthropic().messages.create(

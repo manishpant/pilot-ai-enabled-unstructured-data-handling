@@ -1,7 +1,8 @@
-"""Stage 3: code score first, LLM only when text is not empty."""
+"""Stage 3: code score first, LLM only when there is something to check."""
 
 import json
 import os
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -14,6 +15,27 @@ GOOD_DIR = ROOT / "good"
 BAD_DIR = ROOT / "bad"
 THRESHOLD = 70
 MIN_CHARS = 50
+
+
+def score_transactions(transactions: list) -> int:
+    if not transactions:
+        return 0
+    complete = 0
+    for item in transactions:
+        if not isinstance(item, dict):
+            continue
+        date = str(item.get("date") or "")
+        currency = str(item.get("currency") or "")
+        amount = item.get("amount")
+        if (
+            re.fullmatch(r"\d{4}-\d{2}-\d{2}", date)
+            and isinstance(amount, (int, float))
+            and re.fullmatch(r"[A-Za-z]{3}", currency)
+        ):
+            complete += 1
+    if complete != len(transactions):
+        return 0
+    return 100
 
 
 def score_text(text: str) -> int:
@@ -29,12 +51,24 @@ def score_text(text: str) -> int:
     return round(100 * letters / len(visible))
 
 
-def judge_text(text: str) -> tuple[str, str]:
+def judge_text(text: str, kind: str = "document") -> tuple[str, str]:
     if not os.getenv("ANTHROPIC_API_KEY"):
         raise RuntimeError("missing API key")
 
     from anthropic import Anthropic
 
+    if kind == "transactions":
+        check = (
+            "You check extracted transactions.\n"
+            "good means each item has a date, numeric amount, and currency. "
+            "bad means the list is empty, incomplete, or not transactions."
+        )
+    else:
+        check = (
+            "You check extracted document text.\n"
+            "good means readable document sentences. "
+            "bad means symbols or garbage."
+        )
     message = Anthropic().messages.create(
         model=MODEL,
         max_tokens=80,
@@ -42,12 +76,10 @@ def judge_text(text: str) -> tuple[str, str]:
             {
                 "role": "user",
                 "content": (
-                    "You check extracted document text.\n"
+                    f"{check}\n"
                     "Reply with exactly two lines.\n"
                     "Line 1: good or bad\n"
-                    "Line 2: one short reason\n"
-                    "good means readable document sentences. "
-                    "bad means symbols or garbage.\n\n"
+                    "Line 2: one short reason\n\n"
                     f"Text:\n{text[:2000]}"
                 ),
             }
@@ -61,21 +93,37 @@ def judge_text(text: str) -> tuple[str, str]:
     return verdict, reason
 
 
+def uses_transactions(record: dict) -> bool:
+    if record.get("file_type") in {"xml", "csv"}:
+        return True
+    return bool(record.get("transactions"))
+
+
 def apply_quality(record: dict) -> dict:
-    text = record.get("text") or ""
-    score = score_text(text)
+    if uses_transactions(record):
+        transactions = record.get("transactions") or []
+        text = json.dumps(transactions)
+        score = score_transactions(transactions)
+        empty_reason = "skipped because transactions are empty"
+        kind = "transactions"
+    else:
+        text = record.get("text") or ""
+        score = score_text(text)
+        empty_reason = "skipped because text is empty"
+        kind = "document"
+
     rules = "good" if score >= THRESHOLD else "bad"
     record["quality_score"] = score
     record["quality_rules"] = rules
 
-    if not text.strip():
+    if not str(text).strip() or text == "[]":
         record["quality_llm"] = None
-        record["quality_llm_reason"] = "skipped because text is empty"
+        record["quality_llm_reason"] = empty_reason
         record["quality"] = "bad"
         return record
 
     try:
-        verdict, reason = judge_text(text)
+        verdict, reason = judge_text(text, kind)
     except Exception:
         record["quality_llm"] = None
         record["quality_llm_reason"] = "API unavailable; code score used"
