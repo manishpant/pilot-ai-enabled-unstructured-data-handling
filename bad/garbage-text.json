@@ -1,0 +1,11 @@
+{
+  "id": "garbage-text",
+  "source": "garbage-text.pdf",
+  "file_type": "pdf",
+  "text": "???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~",
+  "quality": "bad",
+  "quality_score": 0,
+  "quality_rules": "bad",
+  "quality_llm": "bad",
+  "quality_llm_reason": "Only symbols and special characters, no readable text or words present."
+}
