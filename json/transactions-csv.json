@@ -1,0 +1,25 @@
+{
+  "id": "transactions-csv",
+  "source": "transactions.csv",
+  "file_type": "csv",
+  "text": "",
+  "transactions": [
+    {
+      "date": "2026-03-14",
+      "amount": 1000.0,
+      "currency": "GBP",
+      "reference": "INV-1044"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": 18.2,
+      "currency": "GBP",
+      "reference": "INV-1045"
+    }
+  ],
+  "quality": "good",
+  "quality_score": 100,
+  "quality_rules": "good",
+  "quality_llm": "good",
+  "quality_llm_reason": "Each item has a date, numeric amount, and currency specified."
+}

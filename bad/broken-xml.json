@@ -1,0 +1,12 @@
+{
+  "id": "broken-xml",
+  "source": "broken.xml",
+  "file_type": "xml",
+  "text": "",
+  "transactions": [],
+  "quality": "bad",
+  "quality_score": 0,
+  "quality_rules": "bad",
+  "quality_llm": null,
+  "quality_llm_reason": "skipped because transactions are empty"
+}

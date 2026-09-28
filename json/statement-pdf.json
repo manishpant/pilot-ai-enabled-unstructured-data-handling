@@ -1,0 +1,25 @@
+{
+  "id": "statement-pdf",
+  "source": "statement.pdf",
+  "file_type": "pdf",
+  "text": "Account statement\nDate 2026-03-16 Amount 420.00 Currency GBP Reference INV-1046\nDate 2026-03-18 Amount 90.00 Currency GBP Reference INV-1048",
+  "transactions": [
+    {
+      "date": "2026-03-16",
+      "amount": 420.0,
+      "currency": "GBP",
+      "reference": "INV-1046"
+    },
+    {
+      "date": "2026-03-18",
+      "amount": 90.0,
+      "currency": "GBP",
+      "reference": "INV-1048"
+    }
+  ],
+  "quality": "good",
+  "quality_score": 100,
+  "quality_rules": "good",
+  "quality_llm": "good",
+  "quality_llm_reason": "Each transaction has a date, numeric amount, and currency specified."
+}

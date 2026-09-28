@@ -1,11 +1,12 @@
 {
-  "id": "garbage-text",
+  "id": "garbage-text-pdf",
   "source": "garbage-text.pdf",
   "file_type": "pdf",
   "text": "???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~",
+  "transactions": [],
   "quality": "bad",
   "quality_score": 0,
   "quality_rules": "bad",
   "quality_llm": "bad",
-  "quality_llm_reason": "Only special characters and symbols, no readable text or sentences."
+  "quality_llm_reason": "Only special characters and symbols with no readable text content."
 }

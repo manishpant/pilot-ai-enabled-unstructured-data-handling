@@ -1,0 +1,31 @@
+{
+  "id": "statement-xml",
+  "source": "statement.xml",
+  "file_type": "xml",
+  "text": "",
+  "transactions": [
+    {
+      "date": "2026-03-12",
+      "amount": 250.0,
+      "currency": "GBP",
+      "reference": "INV-1042"
+    },
+    {
+      "date": "2026-03-13",
+      "amount": 75.5,
+      "currency": "GBP",
+      "reference": "INV-1043"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": 420.0,
+      "currency": "GBP",
+      "reference": "INV-1046"
+    }
+  ],
+  "quality": "good",
+  "quality_score": 100,
+  "quality_rules": "good",
+  "quality_llm": "good",
+  "quality_llm_reason": "Each transaction has a valid date, numeric amount, and currency specified."
+}

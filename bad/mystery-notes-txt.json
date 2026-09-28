@@ -1,0 +1,12 @@
+{
+  "id": "mystery-notes-txt",
+  "source": "mystery-notes.txt",
+  "file_type": "txt",
+  "text": "",
+  "transactions": [],
+  "quality": "bad",
+  "quality_score": 0,
+  "quality_rules": "bad",
+  "quality_llm": null,
+  "quality_llm_reason": "skipped because text is empty"
+}
