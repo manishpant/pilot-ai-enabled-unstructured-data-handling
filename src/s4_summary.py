@@ -32,8 +32,16 @@ def fallback(record: dict) -> tuple[str, str]:
                 "No transactions could be read from the file.",
                 "Replace it with a valid statement that has date, amount, currency, and reference.",
             )
+        blank_reference = any(
+            not str(item.get("reference") or "").strip() for item in transactions if isinstance(item, dict)
+        )
+        if blank_reference:
+            return (
+                "One transaction has a blank reference number.",
+                "Add a reference like INV-1042 on that transaction and run the pipeline again.",
+            )
         return (
-            "One or more transactions are missing a date, amount, or currency.",
+            "One or more transactions are missing a date, amount, currency, or reference number.",
             "Correct those fields and run the pipeline again.",
         )
     text = (record.get("text") or "").strip()

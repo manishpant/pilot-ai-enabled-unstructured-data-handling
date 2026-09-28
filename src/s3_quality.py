@@ -26,11 +26,13 @@ def score_transactions(transactions: list) -> int:
             continue
         date = str(item.get("date") or "")
         currency = str(item.get("currency") or "")
+        reference = str(item.get("reference") or "")
         amount = item.get("amount")
         if (
             re.fullmatch(r"\d{4}-\d{2}-\d{2}", date)
             and isinstance(amount, (int, float))
             and re.fullmatch(r"[A-Za-z]{3}", currency)
+            and re.fullmatch(r"[A-Za-z]+-\d+", reference)
         ):
             complete += 1
     if complete != len(transactions):
@@ -60,7 +62,7 @@ def judge_text(text: str, kind: str = "document") -> tuple[str, str]:
     if kind == "transactions":
         check = (
             "You check extracted transactions.\n"
-            "good means each item has a date, numeric amount, and currency. "
+            "good means each item has a date, numeric amount, currency, and a reference like INV-1042. "
             "bad means the list is empty, incomplete, or not transactions."
         )
     else:
