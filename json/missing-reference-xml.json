@@ -1,0 +1,31 @@
+{
+  "id": "missing-reference-xml",
+  "source": "missing-reference.xml",
+  "file_type": "xml",
+  "text": "",
+  "transactions": [
+    {
+      "date": "2026-03-20",
+      "amount": 300.0,
+      "currency": "GBP",
+      "reference": "INV-1050"
+    },
+    {
+      "date": "2026-03-21",
+      "amount": 45.0,
+      "currency": "GBP",
+      "reference": ""
+    },
+    {
+      "date": "2026-03-22",
+      "amount": 120.0,
+      "currency": "GBP",
+      "reference": "INV-1052"
+    }
+  ],
+  "quality": "bad",
+  "quality_score": 0,
+  "quality_rules": "bad",
+  "quality_llm": "bad",
+  "quality_llm_reason": "Second transaction missing reference field value."
+}
