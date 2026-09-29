@@ -22,5 +22,5 @@
   "quality_score": 100,
   "quality_rules": "good",
   "quality_llm": "good",
-  "quality_llm_reason": "Each transaction contains date, numeric amount, currency, and reference."
+  "quality_llm_reason": "Each transaction contains date, numeric amount, currency, and reference number."
 }

@@ -28,5 +28,5 @@
   "quality_score": 0,
   "quality_rules": "bad",
   "quality_llm": "bad",
-  "quality_llm_reason": "Second transaction missing reference value."
+  "quality_llm_reason": "Second transaction missing reference field value."
 }
