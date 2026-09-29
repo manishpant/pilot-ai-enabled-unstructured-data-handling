@@ -17,9 +17,10 @@
       "reference": "INV-1048"
     }
   ],
+  "extracted_by": "ai",
   "quality": "good",
   "quality_score": 100,
   "quality_rules": "good",
   "quality_llm": "good",
-  "quality_llm_reason": "All items have date, numeric amount, currency, and reference fields."
+  "quality_llm_reason": "Each transaction contains date, numeric amount, currency, and reference number."
 }

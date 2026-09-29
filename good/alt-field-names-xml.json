@@ -1,0 +1,20 @@
+{
+  "id": "alt-field-names-xml",
+  "source": "alt-field-names.xml",
+  "file_type": "xml",
+  "text": "",
+  "transactions": [
+    {
+      "date": "2026-03-25",
+      "amount": 88.4,
+      "currency": "GBP",
+      "reference": "INV-1060"
+    }
+  ],
+  "extracted_by": "ai",
+  "quality": "good",
+  "quality_score": 100,
+  "quality_rules": "good",
+  "quality_llm": "good",
+  "quality_llm_reason": "Contains date, numeric amount, currency, and reference for one complete transaction."
+}

@@ -4,9 +4,10 @@
   "file_type": "pdf",
   "text": "???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~\n???? @@@ #### $$$$ %%%% ~~~~",
   "transactions": [],
+  "extracted_by": "ai",
   "quality": "bad",
   "quality_score": 0,
   "quality_rules": "bad",
   "quality_llm": "bad",
-  "quality_llm_reason": "Only symbols and special characters with no readable text content."
+  "quality_llm_reason": "Only special characters and symbols, no readable text or sentences."
 }
