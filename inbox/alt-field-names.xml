@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Payments>
+  <Payment>
+    <TransactionDate>2026-03-25</TransactionDate>
+    <TxnAmount>88.40</TxnAmount>
+    <Ccy>GBP</Ccy>
+    <PaymentRef>INV-1060</PaymentRef>
+  </Payment>
+</Payments>
