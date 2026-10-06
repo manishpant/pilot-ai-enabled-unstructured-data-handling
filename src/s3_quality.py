@@ -190,6 +190,10 @@ def main() -> None:
             f"{record_id:<{id_width}}  {score:<5}  {rules:<5}  {llm:<4}  {final:<5}  {folder}"
         )
 
+    from s5_index import index_scored_records
+
+    index_scored_records()
+
 
 if __name__ == "__main__":
     main()
